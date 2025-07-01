@@ -1,4 +1,4 @@
-# # ScriptEstagio
+# ScriptEstagio
 
 DSL para automação de tarefas de estágio
 
@@ -25,58 +25,90 @@ treinamento prévio.
 ## Descrição informal da linguagem
 
    A ScriptEstagio possui sintaxe simples e intuitiva, com comandos como:
+   
+### Agendamento pontual
+```agendar "Descrição da Tarefa" as 09:00;```
+
+### Agendamento recorrente
+```agendar "Reunião Semanal" toda Segunda as 10:00;```
+
+### Geração de relatório
 ```
-    agendar "Descrição" em "YYYY-MM-DD" — agenda uma tarefa para a data especificada.
-
-    gerar_relatorio "tipo" de "período" — gera um relatório do tipo desejado.
-
-    registrar_horas de HH:MM até HH:MM — registra o período de trabalho.
-
-    notificar "mensagem" em "YYYY-MM-DD" — envia notificação na data definida.
+gerar relatorio "tipo_relatorio" {
+  origem-dados: "dados.csv";
+  formato: "json";
+};
 ```
-## Exemplo básico
+### Registro de horas
+```
+dataHoras {
+  "2024-11-10": 8 horas;
+  "2024-11-11": 6 horas;
+};
+```
+### Tarefa condicional
+```
+se dia == "Segunda" {
+  agendar "Revisar pendências" as 11:00;
+};
+```
+### Notificação
+- ```notificar "Enviar relatório semanal" em "2024-11-15";```
+- ```notificar "Aviso rápido" as 17:30;```
 
-### agenda uma reunião
-agendar "Reunião com equipe" em "2025-07-05"
-### registra horas de trabalho
-registrar_horas de 09:00 até 17:00
+## Exemplos básicos
+- **basico.estagio**: agendamento e geração de relatório simples.
+- **avancado.estagio**: blocos de `dataHoras`, uso de chaves e várias instruções.
+- **controle_horas.estagio** e **tarefas_notificacoes.estagio**: demonstração de formatos alternativos de data e comandos condicionais.
+
 ## Dependências
-
-- Java 11+ (para ANTLR)
+- Java 11+ (para executar ANTLR)
 - Python 3.8+
-- ANTLR 4.11.1 (antlr-4.11.1-complete.jar incluído em lib/)
-- Bibliotecas Python listadas em requirements.txt
+- ANTLR 4.11.1 (`antlr-4.11.1-complete.jar` em `lib/`)
+- Runtime Python ANTLR: listado em `requirements.txt`
+
 ## Instalação e geração do parser
 
-1. Clone o repositório e entre na pasta:
+1. **Clone** este repositório:
 ```
-git clone
+git clone https://github.com/Pedro-Rocha12/ScriptEstagio.git
 ```
-2. Gere o parser e lexer com ANTLR:
+2. **Acesse** o diretório:
 ```
-java -jar lib/antlr-4.11.1-complete.jar -Dlanguage=Python3 -o src/grammar ScriptEstagio.g4
+cd ScriptEstagio
 ```
-3. Instale as dependências Python:
+3. **Gere** o lexer e parser Python:
+```
+java -jar lib/antlr-4.11.1-complete.jar -Dlanguage=Python3 -o src/grammar grammar/ScriptEstagio.g4
+```
+4. **Instale** o runtime Python:
 ```
 pip install -r requirements.txt
 ```
+
 ## Como executar
 
-Para interpretar um script `.estagio`:
-``` 
-python3 src/interpreter.py examples/basico.estagio 
+- **Interpretar** um script `.estagio`:
 ```
-Para exibir ajuda:
+python src/interpreter.py examples/basico.estagio
 ```
-python3 src/interpreter.py --help
+- **Ajuda**:
+```
+python src/interpreter.py --help
 ```
 
-## Exemplos de programas
-- `examples/basico.estagio`: tarefas simples de agendamento e relatório.
--   `examples/avancado.estagio`: uso de condicionais e notificações.
-## Gramática da linguagem
+## Estrutura de diretórios
+```
+ScriptEstagio/
+├── examples/              # Scripts de exemplo (.estagio)
+├── grammar/               # Definição da gramática (ScriptEstagio.g4)
+├── lib/                   # JAR do ANTLR
+├── src/
+│   ├── grammar/           # Artefatos gerados pelo ANTLR
+│   └── interpreter.py     # Código principal do interpretador
+├── requirements.txt       # Dependências Python
+└── README.md              # Este arquivo
+```
 
-A gramática completa está em `ScriptEstagio.g4`. Alguns trechos:
-##
+> *Projeto desenvolvido como parte da disciplina de Compiladores.*
 
-> Projeto desenvolvido como parte da disciplina de Compiladores.
