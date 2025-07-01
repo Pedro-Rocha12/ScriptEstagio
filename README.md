@@ -4,7 +4,7 @@ DSL para automação de tarefas de estágio
 
 ## Equipe:
 
-- Arthur B
+- Arthur Coimbra Bundchen
 - Paulo Henrique Massa Ramalho
 - Pedro Henrique Valença da Rocha
 - Ronaldo Lucas de Souza Silva
