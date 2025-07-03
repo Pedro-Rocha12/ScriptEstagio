@@ -1,0 +1,7 @@
+#Tarefas recorrentes
+agendar "Atualizar planilhas" toda Terça as 15:00;
+agendar "Reunião de feedback" toda Quinta as 14:00;
+
+#Notificações importantes
+notificar "Enviar relatório semanal ao gestor" em "27-06-2024";
+notificar "Preparar material para a apresentação" em "30-06-2024";

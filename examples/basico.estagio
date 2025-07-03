@@ -1,0 +1,14 @@
+#Agendamento de tarefas
+agendar "Planejamento da sprint" toda Segunda as 9:00;
+agendar "Revisão de código" toda Quarta as 16:00;
+
+#Geração de relatórios
+gerar relatorio "status_projeto" {
+    origem-dados: "progresso.csv";
+    formato: "xlsx";
+};
+
+gerar relatorio "indicadores_kpi" {
+    origem-dados: "kpi_dados.csv";
+    formato: "pdf";
+};
