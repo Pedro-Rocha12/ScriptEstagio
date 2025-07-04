@@ -1,0 +1,20 @@
+#Agendamento de tarefas complexas
+agendar "Backup diário" toda Segunda as 23:00;
+agendar "Reunião semanal" toda Sexta as 10:00;
+
+#Geração de relatórios complexos
+gerar relatorio "analise_financeira" {
+    origem-dados: "financeiro_2024.csv";
+    formato: "csv";
+};
+
+gerar relatorio "desempenho_equipe" {
+    origem-dados: "equipe.json";
+    formato: "json";
+};
+
+#Registro de horas trabalhadas
+dataHoras {
+    "2025-06-23": 8 horas;
+    "2025-06-24": 6 horas;
+};

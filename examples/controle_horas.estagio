@@ -1,0 +1,11 @@
+#Registro de horas trabalhadas por dia
+dataHoras {
+  "25-06-2025": 7 horas;
+  "26-06-2025": 8 horas;
+  "27-06-2025": 6 horas;
+}
+
+#Agendamento condicionado a segunda-feira
+se dia == "Segunda" {
+  agendar "Revisar pendências" as 11:00;
+}
